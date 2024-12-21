@@ -1,0 +1,30 @@
+<!-- Страница отображения каталога товаров -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if message %}
+    <h2>{{ message }}</h2>
+{% endif %}
+
+{% if not products %}
+    <h2>No products in catalog!</h2>
+{% else %}
+<h1>Product Catalog</h1>
+<ol>
+{% for product in products %}
+<li>
+    <strong>{{product.title}}</strong> | Price: {{product.price}}
+    <br>
+    {{product.description}}
+    <br>
+    <a href="/delete_product/{{product.id}}">
+        <button type="submit"><strong>Delete product</strong></button>
+    </a>
+</li>
+{% endfor %}
+</ol>
+{% endif %}
+
+{% endblock %}

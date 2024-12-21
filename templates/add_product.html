@@ -1,0 +1,39 @@
+<!-- Страница отображения формы добавления товара в каталог -->
+
+{% extends "base.html" %}
+
+{% block title %}Add product form{% endblock %}
+
+{% block content %}
+{% if message %}
+    <h2>{{message}}</h2>
+{% endif %}
+
+<form action="/add_product/" method="POST" name="add_product" enctype=multipart/form-data>
+    <ul>
+        <li>
+            <label for="title">Product title:</label>
+            {% if product %}
+            <input type="text" name="title" maxlength="30" value="{{product.title}}" required>
+            {% else %}
+            <input type="text" name="title" maxlength="30" required>
+            {% endif %}
+        </li><li>
+            <label for="description">Product description:</label>
+            {% if product %}
+            <input type="text" name="description" maxlength="100" value="{{product.description}}" required>
+            {% else %}
+            <input type="text" name="description" maxlength="100" required>
+            {% endif %}
+        </li><li>
+            <label for="price">Product price:</label>
+            {% if product_price %}
+             <input type="int" name="price" maxlength="6" value="{{product_price}}" required>
+            {% else %}
+             <input type="int" name="price" maxlength="6" required>
+            {% endif %}
+        </li>
+    </ul>
+    <button type="submit"><strong>Add product</strong></button>
+</form>
+{% endblock %}

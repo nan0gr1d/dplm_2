@@ -1,0 +1,24 @@
+<!-- Основная (базовая) страница приложения. От нее наследуются все остальные страницы -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Urban Shop{% endblock %}</title>
+</head>
+
+<body>
+
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/catalog/">Catalog</a></li>
+    <li><a href="/show_form_add_product/">Add product</a></li>
+</ul>
+
+<hr>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
