@@ -7,6 +7,9 @@ from fastapi.templating import Jinja2Templates
 templates = Jinja2Templates(directory="templates")
 
 class Product(BaseModel):
+    """
+    Модель описания таблицы каталога товаров.
+    """
     id: int
     title: str
     description: str
@@ -27,26 +30,50 @@ products.append(prod2)
 app = FastAPI(swagger_ui_parameters={"tryItOutEnabled": True}, debug=True)
 
 
-# Отображение главной 9домашней) страницы приложения
+# Отображение
 @app.get("/")
 async def homepage(request: Request) -> HTMLResponse:
+    """
+    Функция отображения главной (домашней) страницы приложения
+    :param request: - параметры запроса
+    :return: - возвращает (отображает) главную страницу приложения, формируемую
+            из шаблона home.html
+    """
     return templates.TemplateResponse("home.html", {"request": request})
 
 
-# Отображение каталога товаров
 @app.get('/catalog/')
 async def get_all_products(request: Request) -> HTMLResponse:
+    """
+    Функцмя отображения каталога товаров
+    :param request: - параметры запроса
+    :return: - возвращает страницу каталога товаров, формируемую
+            из шаблона catalog.html
+    """
     return templates.TemplateResponse("catalog.html", {"request": request, "products": products})
 
 
-# Вывод формы добавления товара в каталог
 @app.get("/show_form_add_product/", response_class=HTMLResponse)
 async def show_form_add_product(request: Request):
+    """
+    Функция отображает форму добавления товара в каталог
+    :param request: - параметры запроса
+    :return: - возвращает форму добавления товара в каталог, формируемую из шаблона add_product.html
+    """
     return templates.TemplateResponse("add_product.html", {"request": request})
 
-# Обработка данных из формы добавления товаров
+
 @app.post("/add_product/")
 async def add_product(request: Request, title: str = Form(), description: str = Form(), price: str = Form()):
+    """
+    Функция обработки данных из формы добавления товара
+    :param request: - параметры запроса
+    :param title:  - название товара
+    :param description:  - описание товара
+    :param price:  - цена товара
+    :return: - возвращает форму добавления товара с сообщением о добавлении товара ИЛИ
+                с сообщением об ошибке, если данные в форму введены некорректно.
+    """
     # Для повторной выдачи значений в форме при ошибках
     entered = Product(id=0, title=title, description=description, price=0)
     product_price = price
@@ -93,9 +120,17 @@ async def find_product_id(product_id: int) -> int:
     return -1
 
 
-# Удаление товара из каталога по идентификатору
 @app.get('/delete_product/{product_id}')
 async def delete_product(request: Request, product_id: int) -> HTMLResponse:
+    """
+    Функцмя удаление товара из каталога по идентификатору
+    :param request: - параметры запроса
+    :param product_id: - идентификатор товара
+    :return: - возвращает текущий каталог товара через шаблон catalog.html с отображением сообщения:
+                - товар удален из каталога (Product [itle] id=[id] deleted.)
+                ИЛИ
+                - товар с указанным идентификатором в каталоге не найден (Product id=[id] not found!)
+    """
     product_index = await find_product_id(product_id)
     if product_index < 0:
         message = f"Product id={product_id} not found!"
