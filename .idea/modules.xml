@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/fast_prj.iml" filepath="$PROJECT_DIR$/.idea/fast_prj.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/fast_prj_chernov.iml" filepath="$PROJECT_DIR$/.idea/fast_prj_chernov.iml" />
     </modules>
   </component>
 </project>
