@@ -5,15 +5,15 @@
 - удалять товары из каталога;
 - добавлять товары в каталог.
  
-Установка приложения
---------------------
-В среде IDE PyCharm следует создать новый проект и скачать
-в него следующие файлы из GitHub:
+Установка приложения (MS Windows)
+---------------------------------
+В среде IDE PyCharm следует клонировать проект из ссылки в GitHub:
 
-[https://github.com/nan0gr1d/dplm_2/blob/master/main.py](https://github.com/nan0gr1d/dplm_2/blob/master/main.py)
-[https://github.com/nan0gr1d/dplm_2/tree/master/templates
-](https://github.com/nan0gr1d/dplm_2/tree/master/templates
-)
+[https://github.com/nan0gr1d/dplm_2/](https://github.com/nan0gr1d/dplm_2/)
+
+Установить фреймворк FastAPI и нужные библиотеки:
+
+>> pip install fastapi uvicorn pydantic aiofiles
 
 
 Запуск приложения

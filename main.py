@@ -21,10 +21,12 @@ products = []
 
 
 #  Для отладки -- не пустой каталог товаров
+"""
 prod1 = Product(id=1, title='Product 1', description='Descr First', price=100)
 prod2 = Product(id=2, title='Product 2', description='Descr Second', price=200)
 products.append(prod1)
 products.append(prod2)
+"""
 
 
 app = FastAPI(swagger_ui_parameters={"tryItOutEnabled": True}, debug=True)
