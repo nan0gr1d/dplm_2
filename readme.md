@@ -13,7 +13,7 @@
 
 Установить фреймворк FastAPI и нужные библиотеки:
 
->> pip install fastapi uvicorn pydantic aiofiles
+>> pip install fastapi uvicorn ninja2 python-multipart
 
 
 Запуск приложения
