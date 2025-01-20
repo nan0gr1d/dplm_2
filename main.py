@@ -19,13 +19,13 @@ class Product(BaseModel):
 # Список товаров для эмуляции таблицы БД
 products = []
 
-"""
-### Для отладки -- не пустой каталог товаров
-prod1 = Product(id=1, title='prod1', description='descr 1', price=100)
-prod2 = Product(id=2, title='prod 2', description='descr 2', price=400)
+
+#  Для отладки -- не пустой каталог товаров
+prod1 = Product(id=1, title='Product 1', description='Descr First', price=100)
+prod2 = Product(id=2, title='Product 2', description='Descr Second', price=200)
 products.append(prod1)
 products.append(prod2)
-"""
+
 
 app = FastAPI(swagger_ui_parameters={"tryItOutEnabled": True}, debug=True)
 
@@ -45,7 +45,7 @@ async def homepage(request: Request) -> HTMLResponse:
 @app.get('/catalog/')
 async def get_all_products(request: Request) -> HTMLResponse:
     """
-    Функцмя отображения каталога товаров
+    Функция отображения каталога товаров
     :param request: - параметры запроса
     :return: - возвращает страницу каталога товаров, формируемую
             из шаблона catalog.html
@@ -123,7 +123,7 @@ async def find_product_id(product_id: int) -> int:
 @app.get('/delete_product/{product_id}')
 async def delete_product(request: Request, product_id: int) -> HTMLResponse:
     """
-    Функцмя удаление товара из каталога по идентификатору
+    Функция удаление товара из каталога по идентификатору
     :param request: - параметры запроса
     :param product_id: - идентификатор товара
     :return: - возвращает текущий каталог товара через шаблон catalog.html с отображением сообщения:
